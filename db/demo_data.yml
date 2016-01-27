@@ -1,0 +1,45 @@
+# ユーザーを作成する
+demo_data:
+  users:
+    testuser1:
+      login: 'testuser1'
+      password: 'testpassword1'
+      password_confirmation: 'testpassword1'
+      firstname: 'test'
+      lastname: 'user1'
+      mail: 'testuser1@farend.jp'
+    
+    testuser2:
+      login: 'testuser2'
+      password: 'testpassword2'
+      password_confirmation: 'testpassword2'
+      firstname: 'test'
+      lastname: 'user2'
+      mail: 'testuser2@farend.jp'
+
+  projects:
+    product_intro_seminer:
+      name: '新製品紹介セミナー開催'
+      description: "* 新規開発ソフトウェアFarend-Officeの紹介セミナー\r\n* 東京会場と大阪会場で実施\r\n* イベントは、東京は10日前に終了、大阪は10日後に開催"
+      identifier: 'product_intro_seminer'
+      is_public: 0
+      inherit_members: 0
+      enabled_module_names: ["issue_tracking", "time_tracking", "news", "documents", "files", "wiki", "repository", "boards", "calendar", "gantt", ""]
+      tracker_ids: ["1", "2", "3"]
+      issue_custom_field_ids: [""]
+    
+    new_crm_dev:
+      name: '新顧客管理システム開発'
+      description: "* 顧客情報をMS-SQL + ACCESSで管理していたので、これをRuby on Railsで新たに開発し置き換える。\r\n* 3回に分けてリリースを行い、半年での開発終了を目指す。"
+      identifier: 'new_crm_dev'
+      is_public: 0
+      inherit_members: 0
+      enabled_module_names: ["issue_tracking", "time_tracking", "news", "documents", "files", "wiki", "repository", "boards", "calendar", "gantt", ""]
+      tracker_ids: ["1", "2", "3"]
+      issue_custom_field_ids: [""]
+
+# プロジェクトのメンバーに追加したユーザーを加える
+
+# プロジェクトにバージョンを作成する
+
+# チケットを作成する
