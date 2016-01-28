@@ -1,3 +1,19 @@
+def create_demo_data(model_name, yaml_attributes, find_key_name)
+  model_klass = model_name.constantize
+  model_obj = model_klass.find_or_initialize_by "#{find_key_name}": yaml_attributes[find_key_name]
+  model_obj.destroy if model_obj.persisted?
+  print "Create #{model_name} #{yaml_attributes[find_key_name]}..."
+  model_obj = model_klass.new
+  model_obj.attributes = yaml_attributes
+  yield(model_obj) if block_given?
+  begin
+    model_obj.save!
+    puts 'CREATED!'
+  rescue => e
+    puts "FAILD! because -> #{e.message}"
+  end
+end
+
 namespace :redmine do
   namespace :demo_project do
     #desc 'Load Redmine Demo-data using seed file'
@@ -9,65 +25,30 @@ namespace :redmine do
     
     desc 'Load Redmine Demo-data using yaml file'
     task :load_from_yaml => :environment do |t|
-      filename = Dir[File.join(Rails.root, 'plugins', 'redmine_demo_project', 'db', 'demo_data.yml')][0]
-      File.open(filename, 'r') do |file|
-        YAML::load(file).each do |yaml|
-          yaml.last.each do |table_name, records|
-            model_name = table_name.singularize.camelize
-            model_klass = model_name.constantize
-            records.each do |record|
-              case model_name
-              when "User"
-                model_obj = model_klass.find_or_initialize_by login: record.first
-                model_obj.destroy if model_obj.persisted?
-                print "Create #{model_name} #{record.first}..."
-                model_obj = model_klass.new
-                model_obj.login = record.first
-                model_obj.attributes = record.last
+      yaml_file_path = Dir[File.join(Rails.root, 'plugins', 'redmine_demo_project', 'db', 'demo_data.yml')][0]
+      YAML::load(ERB.new(File.read(yaml_file_path)).result).each do |yaml|
+        yaml.last.each do |table_name, records|
+          model_name = table_name.singularize.camelize
+          records.each do |record|
+            yaml_attributes = record.last
+            case model_name
+            when "User"
+              create_demo_data(model_name, yaml_attributes, 'login') do |model_obj|
+                model_obj.login = yaml_attributes['login']
                 model_obj.admin = false
                 model_obj.register
                 model_obj.activate
-                begin
-                  model_obj.save!
-                  puts 'CREATED!'
-                rescue => e
-                  puts "FAILD! because -> #{e.message}"
-                end
-              when "Project"
-                model_obj = model_klass.find_or_initialize_by identifier: record.first
-                model_obj.destroy if model_obj.persisted?
-                print "Create #{model_name} #{record.first}..."
-                model_obj = model_klass.new
-                model_obj.attributes = record.last
-                begin
-                  model_obj.save!
-                  puts 'CREATED!'
-                rescue => e
-                  puts "FAILD! because -> #{e.message}"
-                end
+              end
+            when "Project"
+              create_demo_data(model_name, yaml_attributes, 'identifier')
+            when "Version"
+              project_identifier = yaml_attributes.delete('project_identifier')
+              create_demo_data(model_name, yaml_attributes, 'name') do |model_obj|
+                project = Project.find_by identifier: project_identifier
+                model_obj.project = project
               end
             end
           end
-=begin
-          user = User.find_or_initialize_by login: record.first
-          binding.pry
-          unless user.persisted?
-            print "Create User #{user_attributes[:login]}..."
-            binding.pry
-            user.attributes = record.attributes
-            user.admin = false
-            user.register
-            user.activate
-            begin
-              user.save!
-              puts 'SAVED!'
-            rescue => e
-              puts "FAILD! because -> #{e.message}"
-            end
-          else
-            puts "User #{record.first} exist."
-          end
-=end
         end
       end
     end

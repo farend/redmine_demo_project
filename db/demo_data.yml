@@ -18,10 +18,10 @@ demo_data:
       mail: 'testuser2@farend.jp'
 
   projects:
-    product_intro_seminer:
+    product_intro_seminar:
       name: '新製品紹介セミナー開催'
       description: "* 新規開発ソフトウェアFarend-Officeの紹介セミナー\r\n* 東京会場と大阪会場で実施\r\n* イベントは、東京は10日前に終了、大阪は10日後に開催"
-      identifier: 'product_intro_seminer'
+      identifier: 'product_intro_seminar'
       is_public: 0
       inherit_members: 0
       enabled_module_names: ["issue_tracking", "time_tracking", "news", "documents", "files", "wiki", "repository", "boards", "calendar", "gantt", ""]
@@ -41,5 +41,20 @@ demo_data:
 # プロジェクトのメンバーに追加したユーザーを加える
 
 # プロジェクトにバージョンを作成する
+  versions:
+    seminer_at_tokyo:
+      name: '東京会場'
+      description: '新製品紹介セミナー@東京会場'
+      effective_date:  <%= Date.today + 10 %>
+      status: 'open'
+      sharing: 'none'
+      project_identifier: 'product_intro_seminar'
+    seminar_at_osaka:
+      name: '大阪会場'
+      description: '新製品紹介セミナー@大阪会場'
+      effective_date:  <%= Date.today + 30 %>
+      status: 'open'
+      sharing: 'none'
+      project_identifier: 'product_intro_seminar'
 
 # チケットを作成する
