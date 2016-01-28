@@ -2,13 +2,16 @@ def create_demo_data(model_name, yaml_attributes, find_key_name)
   model_klass = model_name.constantize
   model_obj = model_klass.find_or_initialize_by "#{find_key_name}": yaml_attributes[find_key_name]
   model_obj.destroy if model_obj.persisted?
-  print "Create #{model_name} #{yaml_attributes[find_key_name]}..."
+  print "Creating #{model_name} #{yaml_attributes[find_key_name]}..."
   model_obj = model_klass.new
   model_obj.attributes = yaml_attributes
+
+  # モデル固有のフィールド設定をブロック呼び出し
   yield(model_obj) if block_given?
+
   begin
     model_obj.save!
-    puts 'CREATED!'
+    puts 'SUCCESS!'
   rescue => e
     puts "FAILD! because -> #{e.message}"
   end
@@ -30,8 +33,13 @@ namespace :redmine do
         yaml.last.each do |table_name, records|
           model_name = table_name.singularize.camelize
           records.each do |record|
+            # recordは配列となっており、record[1]=yamlデータ上の識別子、record[2]=yaml化されたattributesで構成されている
+            # そのため、実際に登録したいデータのattributesを、record.lastとして参照している
             yaml_attributes = record.last
+
+            # モデル名毎にでもデータを登録する
             case model_name
+
             when "User"
               create_demo_data(model_name, yaml_attributes, 'login') do |model_obj|
                 model_obj.login = yaml_attributes['login']
@@ -39,8 +47,27 @@ namespace :redmine do
                 model_obj.register
                 model_obj.activate
               end
+
             when "Project"
               create_demo_data(model_name, yaml_attributes, 'identifier')
+
+            when "Member"
+              user_login = yaml_attributes.delete('user_login')
+              user = User.find_by login: user_login
+              project_identifier = yaml_attributes.delete('project_identifier')
+              project = Project.find_by identifier: project_identifier
+
+              print "Adding #{user.login} to --> #{project.name}..."
+              member = Member.new(project: project, user_id: user.id)
+              admin = User.active.find_by(login: "admin") || User.active.where(admin: true).first
+              member.set_editable_role_ids(Role.givable.pluck(:id).collect {|e| e.to_s}, admin)
+              begin
+                member.save!
+                puts 'SUCCESS!'
+              rescue => e
+                puts "FAILD! because -> #{e.message}"
+              end
+
             when "Version"
               project_identifier = yaml_attributes.delete('project_identifier')
               create_demo_data(model_name, yaml_attributes, 'name') do |model_obj|

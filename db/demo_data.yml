@@ -1,5 +1,5 @@
-# ユーザーを作成する
 demo_data:
+  # ユーザー
   users:
     testuser1:
       login: 'testuser1'
@@ -17,6 +17,7 @@ demo_data:
       lastname: 'user2'
       mail: 'testuser2@farend.jp'
 
+  # プロジェクト     
   projects:
     product_intro_seminar:
       name: '新製品紹介セミナー開催'
@@ -38,8 +39,25 @@ demo_data:
       tracker_ids: ["1", "2", "3"]
       issue_custom_field_ids: [""]
 
-# プロジェクトのメンバーに追加したユーザーを加える
+  # メンバー
+  members:
+    # 新製品紹介セミナー開催 のメンバー
+    product_intro_seminar_member_1:
+      project_identifier: 'product_intro_seminar'
+      user_login: 'testuser1'
+    product_intro_seminar_member_2:
+      project_identifier: 'product_intro_seminar'
+      user_login: 'testuser2'
 
+    # 新顧客管理システム開発 のメンバー
+    new_crm_dev_member_1:
+      project_identifier: 'new_crm_dev'
+      user_login: 'testuser1'
+    new_crm_dev_member_2:
+      project_identifier: 'new_crm_dev'
+      user_login: 'testuser2'
+
+  # バージョン
   versions:
     # 新製品紹介セミナー開催 のバージョン
     seminer_at_tokyo:
