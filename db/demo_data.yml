@@ -40,8 +40,8 @@ demo_data:
 
 # プロジェクトのメンバーに追加したユーザーを加える
 
-# プロジェクトにバージョンを作成する
   versions:
+    # 新製品紹介セミナー開催 のバージョン
     seminer_at_tokyo:
       name: '東京会場'
       description: '新製品紹介セミナー@東京会場'
@@ -56,5 +56,35 @@ demo_data:
       status: 'open'
       sharing: 'none'
       project_identifier: 'product_intro_seminar'
+
+    # 新顧客管理システム開発 のバージョン
+    new_crm_dev_analysis:
+      name: '要件の整理'
+      description: '新顧客管理システム開発の要件整理'
+      effective_date:  <%= Date.today + 20 %>
+      status: 'open'
+      sharing: 'none'
+      project_identifier: 'new_crm_dev'
+    new_crm_dev_first_releace:
+      name: '初回リリース'
+      description: '新顧客管理システム開発の初回リリース'
+      effective_date:  <%= Date.today + 50 %>
+      status: 'open'
+      sharing: 'none'
+      project_identifier: 'new_crm_dev'
+    new_crm_dev_second_releace:
+      name: '第2リリース'
+      description: '新顧客管理システム開発の第2リリース'
+      effective_date:  <%= Date.today + 80 %>
+      status: 'open'
+      sharing: 'none'
+      project_identifier: 'new_crm_dev'
+    new_crm_dev_final_releace:
+      name: '最終リリース'
+      description: '新顧客管理システム開発の最終リリース'
+      effective_date:  <%= Date.today + 110 %>
+      status: 'open'
+      sharing: 'none'
+      project_identifier: 'new_crm_dev'
 
 # チケットを作成する
