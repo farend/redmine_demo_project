@@ -21,13 +21,10 @@ demo_data:
   trackers:
     story:
       name: 'ストーリー'
-      copy_workflow_from_name: '機能'
     feature:
       name: 'フィーチャー'
-      copy_workflow_from_name: '機能'
     task:
       name: 'タスク'
-      copy_workflow_from_name: '機能'
 
   # プロジェクト     
   projects:

@@ -50,12 +50,47 @@ namespace :redmine do
   
               when "Tracker"
                 Tracker.skip_callback(:destroy, :before, :check_integrity)
-                copy_workflow_from_name = yaml_attributes.delete('copy_workflow_from_name')
                 tracker = create_demo_data(model_name, yaml_attributes, 'name') do |tracker|
                   tracker.default_status_id = IssueStatus.first.id
                 end
-                copy_workflow_from = Tracker.find_by name: copy_workflow_from_name
-                tracker.workflow_rules.copy(copy_workflow_from)
+                roles = Role.all
+                transitions = {"1"=>{"1"=>{"always"=>"0", "author"=>"0", "assignee"=>"0"},
+                                     "2"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "3"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "4"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "5"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "6"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"}},
+                               "2"=>{"1"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "2"=>{"always"=>"0", "author"=>"0", "assignee"=>"0"},
+                                     "3"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "4"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "5"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "6"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"}},
+                               "3"=>{"1"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "2"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "3"=>{"always"=>"0", "author"=>"0", "assignee"=>"0"},
+                                     "4"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "5"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "6"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"}},
+                               "4"=>{"1"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "2"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "3"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "4"=>{"always"=>"0", "author"=>"0", "assignee"=>"0"},
+                                     "5"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "6"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"}},
+                               "5"=>{"1"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "2"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "3"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "4"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "5"=>{"always"=>"0", "author"=>"0", "assignee"=>"0"},
+                                     "6"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"}},
+                               "6"=>{"1"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "2"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "3"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "4"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "5"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
+                                     "6"=>{"always"=>"0", "author"=>"0", "assignee"=>"0"}}}
+                WorkflowTransition.replace_transitions(tracker, roles, transitions)
   
               when "Project"
                 tracker_names = yaml_attributes.delete('tracker_names')
