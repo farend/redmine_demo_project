@@ -108,11 +108,12 @@ namespace :redmine do
                   #issue.tracker ||= issue.project.trackers.first
                   issue.tracker = tracker
                 end
-              end
-            end
-          end
-        end
-      end
-    end
-  end
-end
+
+              end # end of case model_name
+            end # end of records.each
+          end # end of yaml.last.each
+        end # end of YAML.load(....).each
+      end # end of ActiveRecord::Base.transaction
+    end # end of task :load_from_yaml
+  end # end of namespace :demo_project
+end # end of namespace :redmine
