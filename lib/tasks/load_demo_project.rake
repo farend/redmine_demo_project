@@ -25,13 +25,6 @@ end
 
 namespace :redmine do
   namespace :demo_project do
-    #desc 'Load Redmine Demo-data using seed file'
-    #task :load_from_seed => :environment do |t|
-    #  filename = Dir[File.join(Rails.root, 'plugins', 'redmine_demo_project', 'db', 'demodata_seeds.rb')][0]
-    #  puts "Seeding Demo-data #{filename}..."
-    #  load(filename) if File.exist?(filename)
-    #end
-    
     desc 'Load Redmine Demo-data using yaml file'
     task :load_from_yaml => :environment do |t|
       yaml_file_path = Dir[File.join(Rails.root, 'plugins', 'redmine_demo_project', 'db', 'demo_data.yml')][0]
