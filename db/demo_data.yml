@@ -17,6 +17,18 @@ demo_data:
       lastname: 'user2'
       mail: 'testuser2@farend.jp'
 
+  # トラッカー
+  trackers:
+    story:
+      name: 'ストーリー'
+      copy_workflow_from_name: '機能'
+    feature:
+      name: 'フィーチャー'
+      copy_workflow_from_name: '機能'
+    task:
+      name: 'タスク'
+      copy_workflow_from_name: '機能'
+
   # プロジェクト     
   projects:
     product_intro_seminar:
@@ -26,7 +38,7 @@ demo_data:
       is_public: 0
       inherit_members: 0
       enabled_module_names: ["issue_tracking", "time_tracking", "news", "documents", "files", "wiki", "repository", "boards", "calendar", "gantt", ""]
-      tracker_ids: ["1", "2", "3"]
+      tracker_names: ["ストーリー", "フィーチャー", "タスク"]
       issue_custom_field_ids: [""]
     
     new_crm_dev:
@@ -36,7 +48,7 @@ demo_data:
       is_public: 0
       inherit_members: 0
       enabled_module_names: ["issue_tracking", "time_tracking", "news", "documents", "files", "wiki", "repository", "boards", "calendar", "gantt", ""]
-      tracker_ids: ["1", "2", "3"]
+      tracker_names: ["ストーリー", "フィーチャー", "タスク"]
       issue_custom_field_ids: [""]
 
   # メンバー
@@ -105,4 +117,46 @@ demo_data:
       sharing: 'none'
       project_identifier: 'new_crm_dev'
 
-# チケットを作成する
+  # チケット
+  issues:
+    seminar_ticket_1:
+      subject: '会場の手配'
+      description: '会場の手配'
+      start_date: <%= Date.today - 80 %>
+      due_date: <%= Date.today - 60 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "東京会場"
+      status_name: "終了"
+      tracker_name: "タスク"
+    seminar_ticket_2:
+      subject: '会場設備の手配'
+      description: '会場設備の手配'
+      start_date: <%= Date.today - 50 %>
+      due_date: <%= Date.today - 10 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "東京会場"
+      status_name: "終了"
+      tracker_name: "タスク"
+    seminar_ticket_3:
+      subject: '地元販社担当者への連絡'
+      description: '地元販社担当者への連絡'
+      start_date: <%= Date.today - 70 %>
+      due_date: <%= Date.today - 60 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "東京会場"
+      status_name: "終了"
+      tracker_name: "タスク"
+    seminar_ticket_4:
+      subject: '旅券手配'
+      description: '旅券手配'
+      start_date: <%= Date.today - 50 %>
+      due_date: <%= Date.today - 10 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser2"
+      fixed_version_name: "東京会場"
+      status_name: "終了"
+      tracker_name: "タスク"
+    

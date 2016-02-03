@@ -1,6 +1,10 @@
 def create_demo_data(model_name, yaml_attributes, find_key_name)
   model_klass = model_name.constantize
-  model_obj = model_klass.find_or_initialize_by "#{find_key_name}": yaml_attributes[find_key_name]
+  if find_key_name
+    model_obj = model_klass.find_or_initialize_by "#{find_key_name}": yaml_attributes[find_key_name]
+  else
+    model_obj = model_klass.new
+  end
   model_obj.destroy if model_obj.persisted?
   print "Creating #{model_name} #{yaml_attributes[find_key_name]}..."
   model_obj = model_klass.new
@@ -12,6 +16,7 @@ def create_demo_data(model_name, yaml_attributes, find_key_name)
   begin
     model_obj.save!
     puts 'SUCCESS!'
+    return model_obj
   rescue => e
     puts "FAILD! because -> #{e.message}"
   end
@@ -41,15 +46,28 @@ namespace :redmine do
             case model_name
 
             when "User"
-              create_demo_data(model_name, yaml_attributes, 'login') do |model_obj|
-                model_obj.login = yaml_attributes['login']
-                model_obj.admin = false
-                model_obj.register
-                model_obj.activate
+              create_demo_data(model_name, yaml_attributes, 'login') do |user|
+                user.login = yaml_attributes['login']
+                user.admin = false
+                user.register
+                user.activate
               end
 
+            when "Tracker"
+              Tracker.skip_callback(:destroy, :before, :check_integrity)
+              copy_workflow_from_name = yaml_attributes.delete('copy_workflow_from_name')
+              tracker = create_demo_data(model_name, yaml_attributes, 'name') do |tracker|
+                tracker.default_status_id = IssueStatus.first.id
+              end
+              copy_workflow_from = Tracker.find_by name: copy_workflow_from_name
+              tracker.workflow_rules.copy(copy_workflow_from)
+
             when "Project"
-              create_demo_data(model_name, yaml_attributes, 'identifier')
+              tracker_names = yaml_attributes.delete('tracker_names')
+              create_demo_data(model_name, yaml_attributes, 'identifier') do |project|
+                trackers = Tracker.where('name IN (?)', tracker_names)
+                project.trackers = trackers
+              end
 
             when "Member"
               user_login = yaml_attributes.delete('user_login')
@@ -70,9 +88,30 @@ namespace :redmine do
 
             when "Version"
               project_identifier = yaml_attributes.delete('project_identifier')
-              create_demo_data(model_name, yaml_attributes, 'name') do |model_obj|
+              create_demo_data(model_name, yaml_attributes, 'name') do |version|
                 project = Project.find_by identifier: project_identifier
-                model_obj.project = project
+                version.project = project
+              end
+
+            when "Issue"
+              project_identifier = yaml_attributes.delete('project_identifier')
+              assigned_user_login = yaml_attributes.delete('assigned_user_login')
+              fixed_version_name = yaml_attributes.delete('fixed_version_name')
+              issue_status_name = yaml_attributes.delete('status_name')
+              tracker_name = yaml_attributes.delete('tracker_name')
+              create_demo_data(model_name, yaml_attributes, 'subject') do |issue|
+                project = Project.find_by identifier: project_identifier
+                assigned_user = User.find_by login: assigned_user_login
+                fixed_version = Version.find_by name: fixed_version_name
+                issue_status = IssueStatus.find_by name: issue_status_name
+                tracker = Tracker.find_by name: tracker_name
+                issue.project = project
+                issue.author = assigned_user
+                issue.assigned_to = assigned_user
+                issue.fixed_version = fixed_version
+                issue.status = issue_status
+                #issue.tracker ||= issue.project.trackers.first
+                issue.tracker = tracker
               end
             end
           end
