@@ -1,0 +1,151 @@
+---
+'1':
+  '1':
+    always: '0'
+    author: '0'
+    assignee: '0'
+  '2':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '3':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '4':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '5':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '6':
+    always: '1'
+    author: '0'
+    assignee: '0'
+'2':
+  '1':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '2':
+    always: '0'
+    author: '0'
+    assignee: '0'
+  '3':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '4':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '5':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '6':
+    always: '1'
+    author: '0'
+    assignee: '0'
+'3':
+  '1':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '2':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '3':
+    always: '0'
+    author: '0'
+    assignee: '0'
+  '4':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '5':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '6':
+    always: '1'
+    author: '0'
+    assignee: '0'
+'4':
+  '1':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '2':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '3':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '4':
+    always: '0'
+    author: '0'
+    assignee: '0'
+  '5':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '6':
+    always: '1'
+    author: '0'
+    assignee: '0'
+'5':
+  '1':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '2':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '3':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '4':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '5':
+    always: '0'
+    author: '0'
+    assignee: '0'
+  '6':
+    always: '1'
+    author: '0'
+    assignee: '0'
+'6':
+  '1':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '2':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '3':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '4':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '5':
+    always: '1'
+    author: '0'
+    assignee: '0'
+  '6':
+    always: '0'
+    author: '0'
+    assignee: '0'

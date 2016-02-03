@@ -28,8 +28,8 @@ namespace :redmine do
     desc 'Load Redmine Demo-data using yaml file'
     task :load_from_yaml => :environment do |t|
       ActiveRecord::Base.transaction do
-        yaml_file_path = Dir[File.join(Rails.root, 'plugins', 'redmine_demo_project', 'db', 'demo_data.yml')][0]
-        YAML::load(ERB.new(File.read(yaml_file_path)).result).each do |yaml|
+        demo_data_file_path = Dir[File.join(Rails.root, 'plugins', 'redmine_demo_project', 'db', 'demo_data.yml')][0]
+        YAML::load(ERB.new(File.read(demo_data_file_path)).result).each do |yaml|
           yaml.last.each do |table_name, records|
             model_name = table_name.singularize.camelize
             records.each do |record|
@@ -53,43 +53,10 @@ namespace :redmine do
                 tracker = create_demo_data(model_name, yaml_attributes, 'name') do |tracker|
                   tracker.default_status_id = IssueStatus.first.id
                 end
+                # トラッカーにワークフローを設定する
                 roles = Role.all
-                transitions = {"1"=>{"1"=>{"always"=>"0", "author"=>"0", "assignee"=>"0"},
-                                     "2"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "3"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "4"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "5"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "6"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"}},
-                               "2"=>{"1"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "2"=>{"always"=>"0", "author"=>"0", "assignee"=>"0"},
-                                     "3"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "4"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "5"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "6"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"}},
-                               "3"=>{"1"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "2"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "3"=>{"always"=>"0", "author"=>"0", "assignee"=>"0"},
-                                     "4"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "5"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "6"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"}},
-                               "4"=>{"1"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "2"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "3"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "4"=>{"always"=>"0", "author"=>"0", "assignee"=>"0"},
-                                     "5"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "6"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"}},
-                               "5"=>{"1"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "2"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "3"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "4"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "5"=>{"always"=>"0", "author"=>"0", "assignee"=>"0"},
-                                     "6"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"}},
-                               "6"=>{"1"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "2"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "3"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "4"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "5"=>{"always"=>"1", "author"=>"0", "assignee"=>"0"},
-                                     "6"=>{"always"=>"0", "author"=>"0", "assignee"=>"0"}}}
+                transitions_file_path = Dir[File.join(Rails.root, 'plugins', 'redmine_demo_project', 'db', 'transitions.yml')][0]
+                transitions = YAML::load(ERB.new(File.read(transitions_file_path)).result).to_h
                 WorkflowTransition.replace_transitions(tracker, roles, transitions)
   
               when "Project"
