@@ -19,6 +19,7 @@ def create_demo_data(model_name, yaml_attributes, find_key_name)
     return model_obj
   rescue => e
     puts "FAILD! because -> #{e.message}"
+    return nil
   end
 end
 
