@@ -116,7 +116,7 @@ demo_data:
 
   # チケット
   issues:
-    seminar_ticket_1:
+    seminar_at_tokyo_ticket_1:
       subject: '会場の手配'
       description: '会場の手配'
       start_date: <%= Date.today - 80 %>
@@ -126,7 +126,7 @@ demo_data:
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_2:
+    seminar_at_tokyo_ticket_2:
       subject: '会場設備の手配'
       description: '会場設備の手配'
       start_date: <%= Date.today - 50 %>
@@ -136,7 +136,7 @@ demo_data:
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_3:
+    seminar_at_tokyo_ticket_3:
       subject: '地元販社担当者への連絡'
       description: '地元販社担当者への連絡'
       start_date: <%= Date.today - 70 %>
@@ -146,7 +146,7 @@ demo_data:
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_4:
+    seminar_at_tokyo_ticket_4:
       subject: '旅券手配'
       description: '旅券手配'
       start_date: <%= Date.today - 50 %>
@@ -156,183 +156,344 @@ demo_data:
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_5:
+    seminar_at_tokyo_ticket_5:
       subject: "宿泊先手配"
       description: "宿泊先手配"
-      start_date: <%= Date.today -70 %>
-      due_date: <%= Date.today -10 %>
+      start_date: <%= Date.today - 70 %>
+      due_date: <%= Date.today - 10 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser2"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_6:
+    seminar_at_tokyo_ticket_6:
       subject: "地元販社懇談会の手配"
       description: "地元販社懇談会の手配"
-      start_date: <%= Date.today -65 %>
-      due_date: <%= Date.today -40 %>
+      start_date: <%= Date.today - 65 %>
+      due_date: <%= Date.today - 40 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_7:
+    seminar_at_tokyo_ticket_7:
       subject: "商品Webサイトへセミナーサイトへのリンクを設置"
       description: "商品Webサイトへセミナーサイトへのリンクを設置"
-      start_date: <%= Date.today -70 %>
-      due_date: <%= Date.today -55 %>
+      start_date: <%= Date.today - 70 %>
+      due_date: <%= Date.today - 55 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_8:
+    seminar_at_tokyo_ticket_8:
       subject: "セミナー紹介サイト作成"
       description: "セミナー紹介サイト作成"
-      start_date: <%= Date.today -70 %>
-      due_date: <%= Date.today -55 %>
+      start_date: <%= Date.today - 70 %>
+      due_date: <%= Date.today - 55 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_9:
+    seminar_at_tokyo_ticket_9:
       subject: "セミナー紹介リーフレット作成"
       description: "セミナー紹介リーフレット作成"
-      start_date: <%= Date.today -70 %>
-      due_date: <%= Date.today -40 %>
+      start_date: <%= Date.today - 70 %>
+      due_date: <%= Date.today - 40 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_10:
+    seminar_at_tokyo_ticket_10:
       subject: "Farend-Officeパンフレットの増刷"
       description: "Farend-Officeパンフレットの増刷"
-      start_date: <%= Date.today -40 %>
-      due_date: <%= Date.today -15 %>
+      start_date: <%= Date.today - 40 %>
+      due_date: <%= Date.today - 15 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_11:
+    seminar_at_tokyo_ticket_11:
       subject: "関連ノベルティの手配"
       description: "関連ノベルティの手配"
-      start_date: <%= Date.today -40 %>
-      due_date: <%= Date.today -15 %>
+      start_date: <%= Date.today - 40 %>
+      due_date: <%= Date.today - 15 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_12:
+    seminar_at_tokyo_ticket_12:
       subject: "DM送付"
       description: "DM送付"
-      start_date: <%= Date.today -40 %>
-      due_date: <%= Date.today -20 %>
+      start_date: <%= Date.today - 40 %>
+      due_date: <%= Date.today - 20 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_13:
+    seminar_at_tokyo_ticket_13:
       subject: "セミナープログラムの作成"
       description: "セミナープログラムの作成"
-      start_date: <%= Date.today -70 %>
-      due_date: <%= Date.today -30 %>
+      start_date: <%= Date.today - 70 %>
+      due_date: <%= Date.today - 30 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_14:
+    seminar_at_tokyo_ticket_14:
       subject: "セミナー社内レビュー"
       description: "セミナー社内レビュー"
-      start_date: <%= Date.today -25 %>
-      due_date: <%= Date.today -25 %>
+      start_date: <%= Date.today - 25 %>
+      due_date: <%= Date.today - 25 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_15:
+    seminar_at_tokyo_ticket_15:
       subject: "セミナー社内公聴会"
       description: "セミナー社内公聴会"
-      start_date: <%= Date.today -18 %>
-      due_date: <%= Date.today -25 %>
+      start_date: <%= Date.today - 18 %>
+      due_date: <%= Date.today - 25 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_16:
+    seminar_at_tokyo_ticket_16:
       subject: "セミナー配布資料の準備"
       description: "セミナー配布資料の準備"
-      start_date: <%= Date.today -15 %>
-      due_date: <%= Date.today -13 %>
+      start_date: <%= Date.today - 15 %>
+      due_date: <%= Date.today - 13 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_17:
+    seminar_at_tokyo_ticket_17:
       subject: "セミナーアンケート作成"
       description: "セミナーアンケート作成"
-      start_date: <%= Date.today -15 %>
-      due_date: <%= Date.today -13 %>
+      start_date: <%= Date.today - 15 %>
+      due_date: <%= Date.today - 13 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_18:
+    seminar_at_tokyo_ticket_18:
       subject: "配送品リストの作成"
       description: "配送品リストの作成"
-      start_date: <%= Date.today -20 %>
-      due_date: <%= Date.today -13 %>
+      start_date: <%= Date.today - 20 %>
+      due_date: <%= Date.today - 13 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_19:
+    seminar_at_tokyo_ticket_19:
       subject: "返送品リストの作成"
       description: "返送品リストの作成"
-      start_date: <%= Date.today -20 %>
-      due_date: <%= Date.today -14 %>
+      start_date: <%= Date.today - 20 %>
+      due_date: <%= Date.today - 14 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_20:
+    seminar_at_tokyo_ticket_20:
       subject: "配送手配"
       description: "配送手配"
-      start_date: <%= Date.today -13 %>
-      due_date: <%= Date.today -13 %>
+      start_date: <%= Date.today - 13 %>
+      due_date: <%= Date.today - 13 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_21:
+    seminar_at_tokyo_ticket_21:
       subject: "アンケート集計"
       description: "アンケート集計"
-      start_date: <%= Date.today -5 %>
-      due_date: <%= Date.today -5 %>
+      start_date: <%= Date.today - 5 %>
+      due_date: <%= Date.today - 5 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-    seminar_ticket_22:
+    seminar_at_tokyo_ticket_22:
       subject: "営業システムへ結果報告を登録"
       description: "営業システムへ結果報告を登録"
-      # start_date: 
+      # start_date:
       due_date: <%= Date.today + 5 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
+      status_name: "新規"
+      tracker_name: "タスク"
+
+    seminar_at_osaka_ticket_1:
+      subject: "会場の手配"
+      description: "会場の手配"
+      start_date: <%= Date.today - 80 %>
+      due_date: <%= Date.today - 40 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "終了"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_2:
+      subject: "会場設備の手配"
+      description: "会場設備の手配"
+      start_date: <%= Date.today - 30 %>
+      due_date: <%= Date.today + 10 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "進行中"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_3:
+      subject: "地元販社担当者への連絡"
+      description: "地元販社担当者への連絡"
+      start_date: <%= Date.today - 50 %>
+      due_date: <%= Date.today - 40 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "終了"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_4:
+      subject: "旅券手配"
+      description: "旅券手配"
+      start_date: <%= Date.today - 70 %>
+      due_date: <%= Date.today + 10 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "終了"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_5:
+      subject: "宿泊先手配"
+      description: "宿泊先手配"
+      start_date: <%= Date.today - 70 %>
+      due_date: <%= Date.today + 10 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "終了"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_6:
+      subject: "地元販社懇談会の手配"
+      description: "地元販社懇談会の手配"
+      start_date: <%= Date.today - 30 %>
+      due_date: <%= Date.today - 20 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "終了"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_7:
+      subject: "商品Webサイトへセミナーサイトへのリンクを設置"
+      description: "商品Webサイトへセミナーサイトへのリンクを設置"
+      start_date: <%= Date.today - 70 %>
+      due_date: <%= Date.today - 35 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "終了"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_8:
+      subject: "セミナー紹介サイト作成"
+      description: "セミナー紹介サイト作成"
+      start_date: <%= Date.today - 70 %>
+      due_date: <%= Date.today - 35 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "終了"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_9:
+      subject: "セミナー紹介リーフレット作成"
+      description: "セミナー紹介リーフレット作成"
+      start_date: <%= Date.today - 70 %>
+      due_date: <%= Date.today - 20 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "終了"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_10:
+      subject: "DM送付"
+      description: "DM送付"
+      start_date: <%= Date.today - 30 %>
+      due_date: <%= Date.today + 0 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "終了"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_11:
+      subject: "セミナーアンケート作成"
+      description: "セミナーアンケート作成"
+      start_date: <%= Date.today - 15 %>
+      due_date: <%= Date.today + 7 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "進行中"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_12:
+      subject: "配送品リストの作成"
+      description: "配送品リストの作成"
+      start_date: <%= Date.today - 20 %>
+      due_date: <%= Date.today + 7 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "進行中"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_13:
+      subject: "返送品リストの作成"
+      description: "返送品リストの作成"
+      start_date: <%= Date.today - 20 %>
+      due_date: <%= Date.today + 6 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "進行中"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_14:
+      subject: "配送手配"
+      description: "配送手配"
+      # start_date:
+      due_date: <%= Date.today + 7 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "新規"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_15:
+      subject: "アンケート集計"
+      description: "アンケート集計"
+      # start_date:
+      due_date: <%= Date.today + 15 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
+      status_name: "新規"
+      tracker_name: "タスク"
+    seminar_at_osaka_ticket_16:
+      subject: "営業システムへ結果報告を登録"
+      description: "営業システムへ結果報告を登録"
+      # start_date:
+      due_date: <%= Date.today + 25 %>
+      project_identifier: "product_intro_seminar"
+      assigned_user_login: "testuser1"
+      fixed_version_name: "大阪会場"
       status_name: "新規"
       tracker_name: "タスク"
