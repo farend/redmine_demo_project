@@ -45,7 +45,11 @@ namespace :redmine do
               when "User"
                 create_demo_data(model_name, yaml_attributes, 'login') do |user|
                   user.login = yaml_attributes['login']
+                  user.password = yaml_attributes['password']
+                  user.password_confirmation = yaml_attributes['password_confirmation']
                   user.admin = false
+                  user.generate_password = 0
+                  user.must_change_passwd = 0
                   user.register
                   user.activate
                 end
