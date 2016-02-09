@@ -20,7 +20,7 @@ def create_demo_data(model_name, yaml_attributes, find_keys, validate = true)
     puts 'SUCCESS!'
     return model_obj
   rescue => e
-    puts "FAILD! because -> #{e.message}"
+    puts "FAILD! : #{e.message}"
     raise e
   end
 end
@@ -60,10 +60,19 @@ namespace :redmine do
                   tracker.default_status_id = IssueStatus.first.id
                 end
                 # トラッカーにワークフローを設定する
+                print "Updating Tracker #{tracker.name}...."
                 roles = Role.all
+                # YAMLで定義されたワークフローのtransitionsをロードしてHashに変換する
                 transitions_file_path = Dir[File.join(Rails.root, 'plugins', 'redmine_demo_project', 'db', 'transitions.yml')][0]
                 transitions = YAML::load(ERB.new(File.read(transitions_file_path)).result).to_h
-                WorkflowTransition.replace_transitions(tracker, roles, transitions)
+                # YAMLからロードしたワークフローの設定をトラッカーにセットする
+                begin
+                  WorkflowTransition.replace_transitions(tracker, roles, transitions)
+                  puts 'SUCCESS!'
+                rescue => e
+                  puts "FAILD! : #{e.message}"
+                  raise e
+                end
   
               when "Project"
                 tracker_names = yaml_attributes.delete('tracker_names')
@@ -78,7 +87,7 @@ namespace :redmine do
                 project_identifier = yaml_attributes.delete('project_identifier')
                 project = Project.find_by identifier: project_identifier
   
-                print "Adding #{user.login} to --> #{project.name}..."
+                print "Adding Member #{user.login} to --> #{project.name}..."
                 member = Member.new(project: project, user_id: user.id)
                 admin = User.active.find_by(login: "admin") || User.active.where(admin: true).first
                 member.set_editable_role_ids(Role.givable.pluck(:id).collect {|e| e.to_s}, admin)
@@ -86,7 +95,8 @@ namespace :redmine do
                   member.save!
                   puts 'SUCCESS!'
                 rescue => e
-                  puts "FAILD! because -> #{e.message}"
+                  puts "FAILD! : #{e.message}"
+                  raise e
                 end
   
               when "Version"
@@ -120,9 +130,9 @@ namespace :redmine do
                   issue.tracker = tracker
                 end
                 issue_status = IssueStatus.find_by name: issue_status_name
-                issue.status = issue_status
                 
                 if issue_status_name == "進行中" || issue_status_name == "終了"
+                  print "Updating Issue #{issue.subject} status -> 進行中..."
                   issue.init_journal(assigned_user, '作業に着手しました。')
                   journal = issue.current_journal
                   journal.created_on = start_date
@@ -130,10 +140,17 @@ namespace :redmine do
                   issue.status = issue_status
                   issue.start_date = start_date
                   issue.done_ratio = rand(1..8) * 10 # 進捗率 = 10% 〜 80%
-                  issue.save!(validate: false)
+                  begin
+                    issue.save!(validate: false)
+                    puts 'SUCCESS!'
+                  rescue => e
+                    puts "FAILD! : #{e.message}"
+                    raise e
+                  end
                 end
 
                 if issue_status_name == "終了"
+                  print "Updating Issue #{issue.subject} status -> 終了..."
                   # issue.reload  # MEMO: issue.reloadだと進行中で設定したjournalが上書きされるので、もう一度findする
                   issue = Issue.find(issue.id)
                   issue.init_journal(assigned_user, '作業が完了しました。')
@@ -143,7 +160,13 @@ namespace :redmine do
                   issue.status = issue_status
                   # :issue.update_done_ratio_from_issue_status
                   issue.done_ratio = 100 # 進捗率 = 100%
-                  issue.save!(validate: false)
+                  begin
+                    issue.save!(validate: false)
+                    puts 'SUCCESS!'
+                  rescue => e
+                    puts "FAILD! : #{e.message}"
+                    raise e
+                  end
                 end
 
               end # end of case model_name
