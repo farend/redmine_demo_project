@@ -1,4 +1,4 @@
-def create_demo_data(model_name, yaml_attributes, find_keys)
+def create_demo_data(model_name, yaml_attributes, find_keys, validate = true)
   model_klass = model_name.constantize
   find_keys = Array.wrap(find_keys)
   if find_keys.any?
@@ -16,7 +16,7 @@ def create_demo_data(model_name, yaml_attributes, find_keys)
   yield(model_obj) if block_given?
 
   begin
-    model_obj.save!
+    model_obj.save!(validate: validate)
     puts 'SUCCESS!'
     return model_obj
   rescue => e
@@ -95,14 +95,17 @@ namespace :redmine do
               when "Issue"
                 project_identifier = yaml_attributes.delete('project_identifier')
                 assigned_user_login = yaml_attributes.delete('assigned_user_login')
+                assigned_user = User.find_by login: assigned_user_login
                 fixed_version_name = yaml_attributes.delete('fixed_version_name')
                 issue_status_name = yaml_attributes.delete('status_name')
                 tracker_name = yaml_attributes.delete('tracker_name')
-                create_demo_data(model_name, yaml_attributes, ['subject', 'fixed_version_id']) do |issue|
+                start_date = yaml_attributes.delete('start_date')
+                end_date = yaml_attributes.delete('end_date')
+                issue = create_demo_data(model_name, yaml_attributes, ['subject', 'fixed_version_id'], false) do |issue|
                   project = Project.find_by identifier: project_identifier
-                  assigned_user = User.find_by login: assigned_user_login
                   fixed_version = Version.find_by name: fixed_version_name
-                  issue_status = IssueStatus.find_by name: issue_status_name
+                  # issue_status = IssueStatus.find_by name: issue_status_name
+                  issue_status = IssueStatus.find_by name: '新規'
                   tracker = Tracker.find_by name: tracker_name
                   issue.project = project
                   issue.author = assigned_user
@@ -111,6 +114,32 @@ namespace :redmine do
                   issue.status = issue_status
                   #issue.tracker ||= issue.project.trackers.first
                   issue.tracker = tracker
+                end
+                issue_status = IssueStatus.find_by name: issue_status_name
+                issue.status = issue_status
+                
+                if issue_status_name == "進行中" || issue_status_name == "終了"
+                  issue.init_journal(assigned_user, '作業に着手しました。')
+                  journal = issue.current_journal
+                  journal.created_on = start_date
+                  issue_status = IssueStatus.find_by name: '進行中'
+                  issue.status = issue_status
+                  issue.start_date = start_date
+                  issue.done_ratio = rand(1..8) * 10 # 進捗率 = 10% 〜 80%
+                  issue.save!(validate: false)
+                end
+
+                if issue_status_name == "終了"
+                  # issue.reload  # MEMO: issue.reloadだと進行中で設定したjournalが上書きされるので、もう一度findする
+                  issue = Issue.find(issue.id)
+                  issue.init_journal(assigned_user, '作業が完了しました。')
+                  journal = issue.current_journal
+                  journal.created_on = end_date if end_date.present?
+                  issue_status = IssueStatus.find_by name: '終了'
+                  issue.status = issue_status
+                  # :issue.update_done_ratio_from_issue_status
+                  issue.done_ratio = 100 # 進捗率 = 100%
+                  issue.save!(validate: false)
                 end
 
               end # end of case model_name

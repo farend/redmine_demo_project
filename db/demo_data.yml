@@ -121,6 +121,7 @@ demo_data:
       fixed_version_id: 
       description: '会場の手配'
       start_date: <%= Date.today - 80 %>
+      end_date: <%= Date.today - 70 %>
       due_date: <%= Date.today - 60 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -132,6 +133,7 @@ demo_data:
       fixed_version_id: 
       description: '会場設備の手配'
       start_date: <%= Date.today - 50 %>
+      end_date: <%= Date.today - 20 %>
       due_date: <%= Date.today - 10 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -143,6 +145,7 @@ demo_data:
       fixed_version_id: 
       description: '地元販社担当者への連絡'
       start_date: <%= Date.today - 70 %>
+      end_date: <%= Date.today - 60 %>
       due_date: <%= Date.today - 60 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -153,7 +156,8 @@ demo_data:
       subject: '旅券手配'
       fixed_version_id: 
       description: '旅券手配'
-      start_date: <%= Date.today - 50 %>
+      start_date: <%= Date.today - 70 %>
+      end_date: <%= Date.today - 60 %>
       due_date: <%= Date.today - 10 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser2"
@@ -165,6 +169,7 @@ demo_data:
       fixed_version_id: 
       description: "宿泊先手配"
       start_date: <%= Date.today - 70 %>
+      end_date: <%= Date.today - 65 %>
       due_date: <%= Date.today - 10 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser2"
@@ -176,6 +181,7 @@ demo_data:
       fixed_version_id: 
       description: "地元販社懇談会の手配"
       start_date: <%= Date.today - 65 %>
+      end_date: <%= Date.today - 60 %>
       due_date: <%= Date.today - 40 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -187,6 +193,7 @@ demo_data:
       fixed_version_id: 
       description: "商品Webサイトへセミナーサイトへのリンクを設置"
       start_date: <%= Date.today - 70 %>
+      end_date: <%= Date.today - 60 %>
       due_date: <%= Date.today - 55 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -198,6 +205,7 @@ demo_data:
       fixed_version_id: 
       description: "セミナー紹介サイト作成"
       start_date: <%= Date.today - 70 %>
+      end_date: <%= Date.today - 60 %>
       due_date: <%= Date.today - 55 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -209,6 +217,7 @@ demo_data:
       fixed_version_id: 
       description: "セミナー紹介リーフレット作成"
       start_date: <%= Date.today - 70 %>
+      end_date: <%= Date.today - 40 %>
       due_date: <%= Date.today - 40 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -220,6 +229,7 @@ demo_data:
       fixed_version_id: 
       description: "Farend-Officeパンフレットの増刷"
       start_date: <%= Date.today - 40 %>
+      end_date: <%= Date.today - 20 %>
       due_date: <%= Date.today - 15 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -231,6 +241,7 @@ demo_data:
       fixed_version_id: 
       description: "関連ノベルティの手配"
       start_date: <%= Date.today - 40 %>
+      end_date: <%= Date.today - 15 %>
       due_date: <%= Date.today - 15 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -242,6 +253,7 @@ demo_data:
       fixed_version_id: 
       description: "DM送付"
       start_date: <%= Date.today - 40 %>
+      end_date: <%= Date.today - 20 %>
       due_date: <%= Date.today - 20 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -253,6 +265,7 @@ demo_data:
       fixed_version_id: 
       description: "セミナープログラムの作成"
       start_date: <%= Date.today - 70 %>
+      end_date: <%= Date.today - 25 %>
       due_date: <%= Date.today - 30 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -264,6 +277,7 @@ demo_data:
       fixed_version_id: 
       description: "セミナー社内レビュー"
       start_date: <%= Date.today - 25 %>
+      end_date: <%= Date.today - 20 %>
       due_date: <%= Date.today - 25 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -274,7 +288,8 @@ demo_data:
       subject: "セミナー社内公聴会"
       fixed_version_id: 
       description: "セミナー社内公聴会"
-      start_date: <%= Date.today - 28 %>
+      start_date: <%= Date.today - 18 %>
+      end_date: <%= Date.today - 18 %>
       due_date: <%= Date.today - 25 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -286,6 +301,7 @@ demo_data:
       fixed_version_id: 
       description: "セミナー配布資料の準備"
       start_date: <%= Date.today - 15 %>
+      end_date: <%= Date.today - 13 %>
       due_date: <%= Date.today - 13 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -297,6 +313,7 @@ demo_data:
       fixed_version_id: 
       description: "セミナーアンケート作成"
       start_date: <%= Date.today - 15 %>
+      end_date: <%= Date.today - 13 %>
       due_date: <%= Date.today - 13 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -308,6 +325,7 @@ demo_data:
       fixed_version_id: 
       description: "配送品リストの作成"
       start_date: <%= Date.today - 20 %>
+      end_date: <%= Date.today - 13 %>
       due_date: <%= Date.today - 13 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -319,6 +337,7 @@ demo_data:
       fixed_version_id: 
       description: "返送品リストの作成"
       start_date: <%= Date.today - 20 %>
+      end_date: <%= Date.today - 14 %>
       due_date: <%= Date.today - 14 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -330,6 +349,7 @@ demo_data:
       fixed_version_id: 
       description: "配送手配"
       start_date: <%= Date.today - 13 %>
+      end_date: <%= Date.today - 13 %>
       due_date: <%= Date.today - 13 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -341,6 +361,7 @@ demo_data:
       fixed_version_id: 
       description: "アンケート集計"
       start_date: <%= Date.today - 5 %>
+      # end_date:
       due_date: <%= Date.today - 5 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -352,6 +373,7 @@ demo_data:
       fixed_version_id: 
       description: "営業システムへ結果報告を登録"
       # start_date:
+      # end_date:
       due_date: <%= Date.today + 5 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -364,6 +386,7 @@ demo_data:
       fixed_version_id: 
       description: "会場の手配"
       start_date: <%= Date.today - 80 %>
+      end_date: <%= Date.today - 65 %>
       due_date: <%= Date.today - 40 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -375,6 +398,7 @@ demo_data:
       fixed_version_id: 
       description: "会場設備の手配"
       start_date: <%= Date.today - 30 %>
+      # end_date:
       due_date: <%= Date.today + 10 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -386,6 +410,7 @@ demo_data:
       fixed_version_id: 
       description: "地元販社担当者への連絡"
       start_date: <%= Date.today - 50 %>
+      end_date: <%= Date.today - 35 %>
       due_date: <%= Date.today - 40 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -397,6 +422,7 @@ demo_data:
       fixed_version_id: 
       description: "旅券手配"
       start_date: <%= Date.today - 70 %>
+      end_date: <%= Date.today - 60 %>
       due_date: <%= Date.today + 10 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -408,6 +434,7 @@ demo_data:
       fixed_version_id: 
       description: "宿泊先手配"
       start_date: <%= Date.today - 70 %>
+      end_date: <%= Date.today - 50 %>
       due_date: <%= Date.today + 10 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -419,6 +446,7 @@ demo_data:
       fixed_version_id: 
       description: "地元販社懇談会の手配"
       start_date: <%= Date.today - 30 %>
+      end_date: <%= Date.today - 20 %>
       due_date: <%= Date.today - 20 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -430,6 +458,7 @@ demo_data:
       fixed_version_id: 
       description: "商品Webサイトへセミナーサイトへのリンクを設置"
       start_date: <%= Date.today - 70 %>
+      end_date: <%= Date.today - 55 %>
       due_date: <%= Date.today - 35 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -441,6 +470,7 @@ demo_data:
       fixed_version_id: 
       description: "セミナー紹介サイト作成"
       start_date: <%= Date.today - 70 %>
+      end_date: <%= Date.today - 60 %>
       due_date: <%= Date.today - 35 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -452,6 +482,7 @@ demo_data:
       fixed_version_id: 
       description: "セミナー紹介リーフレット作成"
       start_date: <%= Date.today - 70 %>
+      end_date: <%= Date.today - 40 %>
       due_date: <%= Date.today - 20 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -463,6 +494,7 @@ demo_data:
       fixed_version_id: 
       description: "DM送付"
       start_date: <%= Date.today - 30 %>
+      end_date: <%= Date.today - 5 %>
       due_date: <%= Date.today + 0 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -474,6 +506,7 @@ demo_data:
       fixed_version_id: 
       description: "セミナーアンケート作成"
       start_date: <%= Date.today - 15 %>
+      # end_date: 
       due_date: <%= Date.today + 7 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -485,6 +518,7 @@ demo_data:
       fixed_version_id: 
       description: "配送品リストの作成"
       start_date: <%= Date.today - 20 %>
+      # end_date: 
       due_date: <%= Date.today + 7 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -496,6 +530,7 @@ demo_data:
       fixed_version_id: 
       description: "返送品リストの作成"
       start_date: <%= Date.today - 20 %>
+      # end_date: 
       due_date: <%= Date.today + 6 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -507,6 +542,7 @@ demo_data:
       fixed_version_id: 
       description: "配送手配"
       # start_date:
+      # end_date: 
       due_date: <%= Date.today + 7 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -518,6 +554,7 @@ demo_data:
       fixed_version_id: 
       description: "アンケート集計"
       # start_date:
+      # end_date: 
       due_date: <%= Date.today + 15 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
@@ -529,6 +566,7 @@ demo_data:
       fixed_version_id: 
       description: "営業システムへ結果報告を登録"
       # start_date:
+      # end_date: 
       due_date: <%= Date.today + 25 %>
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
