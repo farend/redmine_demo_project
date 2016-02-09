@@ -324,7 +324,7 @@ demo_data:
       project_identifier: "product_intro_seminar"
       assigned_user_login: "testuser1"
       fixed_version_name: "東京会場"
-      status_name: "終了"
+      status_name: "進行中"
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_22:
       subject: "営業システムへ結果報告を登録"
