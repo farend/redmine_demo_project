@@ -1,12 +1,14 @@
-def create_demo_data(model_name, yaml_attributes, find_key_name)
+def create_demo_data(model_name, yaml_attributes, find_keys)
   model_klass = model_name.constantize
-  if find_key_name
-    model_obj = model_klass.find_or_initialize_by "#{find_key_name}": yaml_attributes[find_key_name]
+  find_keys = Array.wrap(find_keys)
+  if find_keys.any?
+    #model_obj = model_klass.find_or_initialize_by "#{find_key_name}": yaml_attributes[find_key_name]
+    model_obj = model_klass.find_or_initialize_by Hash[*find_keys.collect{|key|[key, yaml_attributes[key]]}.flatten]
   else
     model_obj = model_klass.new
   end
   model_obj.destroy if model_obj.persisted?
-  print "Creating #{model_name} #{yaml_attributes[find_key_name]}..."
+  print "Creating #{model_name} #{find_keys.collect{|key|yaml_attributes[key]}.to_s}..."
   model_obj = model_klass.new
   model_obj.attributes = yaml_attributes
 
@@ -19,7 +21,7 @@ def create_demo_data(model_name, yaml_attributes, find_key_name)
     return model_obj
   rescue => e
     puts "FAILD! because -> #{e.message}"
-    return nil
+    raise e
   end
 end
 
@@ -96,7 +98,7 @@ namespace :redmine do
                 fixed_version_name = yaml_attributes.delete('fixed_version_name')
                 issue_status_name = yaml_attributes.delete('status_name')
                 tracker_name = yaml_attributes.delete('tracker_name')
-                create_demo_data(model_name, yaml_attributes, 'subject') do |issue|
+                create_demo_data(model_name, yaml_attributes, ['subject', 'fixed_version_id']) do |issue|
                   project = Project.find_by identifier: project_identifier
                   assigned_user = User.find_by login: assigned_user_login
                   fixed_version = Version.find_by name: fixed_version_name
