@@ -20,7 +20,7 @@
 
 ```
 cd REDMINE_ROOT
-bundle exec rake redmine:demo_project:load_from_yaml
+bundle exec rake redmine:demo_project:load
 ```
 
 ## 登録済みのデモデータ
