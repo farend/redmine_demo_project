@@ -118,6 +118,7 @@ demo_data:
   issues:
     seminar_at_tokyo_ticket_1:
       subject: '会場の手配'
+      fixed_version_id: 
       description: '会場の手配'
       start_date: <%= Date.today - 80 %>
       due_date: <%= Date.today - 60 %>
@@ -128,6 +129,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_2:
       subject: '会場設備の手配'
+      fixed_version_id: 
       description: '会場設備の手配'
       start_date: <%= Date.today - 50 %>
       due_date: <%= Date.today - 10 %>
@@ -138,6 +140,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_3:
       subject: '地元販社担当者への連絡'
+      fixed_version_id: 
       description: '地元販社担当者への連絡'
       start_date: <%= Date.today - 70 %>
       due_date: <%= Date.today - 60 %>
@@ -148,6 +151,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_4:
       subject: '旅券手配'
+      fixed_version_id: 
       description: '旅券手配'
       start_date: <%= Date.today - 50 %>
       due_date: <%= Date.today - 10 %>
@@ -158,6 +162,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_5:
       subject: "宿泊先手配"
+      fixed_version_id: 
       description: "宿泊先手配"
       start_date: <%= Date.today - 70 %>
       due_date: <%= Date.today - 10 %>
@@ -168,6 +173,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_6:
       subject: "地元販社懇談会の手配"
+      fixed_version_id: 
       description: "地元販社懇談会の手配"
       start_date: <%= Date.today - 65 %>
       due_date: <%= Date.today - 40 %>
@@ -178,6 +184,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_7:
       subject: "商品Webサイトへセミナーサイトへのリンクを設置"
+      fixed_version_id: 
       description: "商品Webサイトへセミナーサイトへのリンクを設置"
       start_date: <%= Date.today - 70 %>
       due_date: <%= Date.today - 55 %>
@@ -188,6 +195,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_8:
       subject: "セミナー紹介サイト作成"
+      fixed_version_id: 
       description: "セミナー紹介サイト作成"
       start_date: <%= Date.today - 70 %>
       due_date: <%= Date.today - 55 %>
@@ -198,6 +206,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_9:
       subject: "セミナー紹介リーフレット作成"
+      fixed_version_id: 
       description: "セミナー紹介リーフレット作成"
       start_date: <%= Date.today - 70 %>
       due_date: <%= Date.today - 40 %>
@@ -208,6 +217,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_10:
       subject: "Farend-Officeパンフレットの増刷"
+      fixed_version_id: 
       description: "Farend-Officeパンフレットの増刷"
       start_date: <%= Date.today - 40 %>
       due_date: <%= Date.today - 15 %>
@@ -218,6 +228,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_11:
       subject: "関連ノベルティの手配"
+      fixed_version_id: 
       description: "関連ノベルティの手配"
       start_date: <%= Date.today - 40 %>
       due_date: <%= Date.today - 15 %>
@@ -228,6 +239,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_12:
       subject: "DM送付"
+      fixed_version_id: 
       description: "DM送付"
       start_date: <%= Date.today - 40 %>
       due_date: <%= Date.today - 20 %>
@@ -238,6 +250,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_13:
       subject: "セミナープログラムの作成"
+      fixed_version_id: 
       description: "セミナープログラムの作成"
       start_date: <%= Date.today - 70 %>
       due_date: <%= Date.today - 30 %>
@@ -248,6 +261,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_14:
       subject: "セミナー社内レビュー"
+      fixed_version_id: 
       description: "セミナー社内レビュー"
       start_date: <%= Date.today - 25 %>
       due_date: <%= Date.today - 25 %>
@@ -258,6 +272,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_15:
       subject: "セミナー社内公聴会"
+      fixed_version_id: 
       description: "セミナー社内公聴会"
       start_date: <%= Date.today - 28 %>
       due_date: <%= Date.today - 25 %>
@@ -268,6 +283,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_16:
       subject: "セミナー配布資料の準備"
+      fixed_version_id: 
       description: "セミナー配布資料の準備"
       start_date: <%= Date.today - 15 %>
       due_date: <%= Date.today - 13 %>
@@ -278,6 +294,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_17:
       subject: "セミナーアンケート作成"
+      fixed_version_id: 
       description: "セミナーアンケート作成"
       start_date: <%= Date.today - 15 %>
       due_date: <%= Date.today - 13 %>
@@ -288,6 +305,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_18:
       subject: "配送品リストの作成"
+      fixed_version_id: 
       description: "配送品リストの作成"
       start_date: <%= Date.today - 20 %>
       due_date: <%= Date.today - 13 %>
@@ -298,6 +316,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_19:
       subject: "返送品リストの作成"
+      fixed_version_id: 
       description: "返送品リストの作成"
       start_date: <%= Date.today - 20 %>
       due_date: <%= Date.today - 14 %>
@@ -308,6 +327,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_20:
       subject: "配送手配"
+      fixed_version_id: 
       description: "配送手配"
       start_date: <%= Date.today - 13 %>
       due_date: <%= Date.today - 13 %>
@@ -318,6 +338,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_21:
       subject: "アンケート集計"
+      fixed_version_id: 
       description: "アンケート集計"
       start_date: <%= Date.today - 5 %>
       due_date: <%= Date.today - 5 %>
@@ -328,6 +349,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_tokyo_ticket_22:
       subject: "営業システムへ結果報告を登録"
+      fixed_version_id: 
       description: "営業システムへ結果報告を登録"
       # start_date:
       due_date: <%= Date.today + 5 %>
@@ -339,6 +361,7 @@ demo_data:
 
     seminar_at_osaka_ticket_1:
       subject: "会場の手配"
+      fixed_version_id: 
       description: "会場の手配"
       start_date: <%= Date.today - 80 %>
       due_date: <%= Date.today - 40 %>
@@ -349,6 +372,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_2:
       subject: "会場設備の手配"
+      fixed_version_id: 
       description: "会場設備の手配"
       start_date: <%= Date.today - 30 %>
       due_date: <%= Date.today + 10 %>
@@ -359,6 +383,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_3:
       subject: "地元販社担当者への連絡"
+      fixed_version_id: 
       description: "地元販社担当者への連絡"
       start_date: <%= Date.today - 50 %>
       due_date: <%= Date.today - 40 %>
@@ -369,6 +394,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_4:
       subject: "旅券手配"
+      fixed_version_id: 
       description: "旅券手配"
       start_date: <%= Date.today - 70 %>
       due_date: <%= Date.today + 10 %>
@@ -379,6 +405,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_5:
       subject: "宿泊先手配"
+      fixed_version_id: 
       description: "宿泊先手配"
       start_date: <%= Date.today - 70 %>
       due_date: <%= Date.today + 10 %>
@@ -389,6 +416,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_6:
       subject: "地元販社懇談会の手配"
+      fixed_version_id: 
       description: "地元販社懇談会の手配"
       start_date: <%= Date.today - 30 %>
       due_date: <%= Date.today - 20 %>
@@ -399,6 +427,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_7:
       subject: "商品Webサイトへセミナーサイトへのリンクを設置"
+      fixed_version_id: 
       description: "商品Webサイトへセミナーサイトへのリンクを設置"
       start_date: <%= Date.today - 70 %>
       due_date: <%= Date.today - 35 %>
@@ -409,6 +438,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_8:
       subject: "セミナー紹介サイト作成"
+      fixed_version_id: 
       description: "セミナー紹介サイト作成"
       start_date: <%= Date.today - 70 %>
       due_date: <%= Date.today - 35 %>
@@ -419,6 +449,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_9:
       subject: "セミナー紹介リーフレット作成"
+      fixed_version_id: 
       description: "セミナー紹介リーフレット作成"
       start_date: <%= Date.today - 70 %>
       due_date: <%= Date.today - 20 %>
@@ -429,6 +460,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_10:
       subject: "DM送付"
+      fixed_version_id: 
       description: "DM送付"
       start_date: <%= Date.today - 30 %>
       due_date: <%= Date.today + 0 %>
@@ -439,6 +471,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_11:
       subject: "セミナーアンケート作成"
+      fixed_version_id: 
       description: "セミナーアンケート作成"
       start_date: <%= Date.today - 15 %>
       due_date: <%= Date.today + 7 %>
@@ -449,6 +482,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_12:
       subject: "配送品リストの作成"
+      fixed_version_id: 
       description: "配送品リストの作成"
       start_date: <%= Date.today - 20 %>
       due_date: <%= Date.today + 7 %>
@@ -459,6 +493,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_13:
       subject: "返送品リストの作成"
+      fixed_version_id: 
       description: "返送品リストの作成"
       start_date: <%= Date.today - 20 %>
       due_date: <%= Date.today + 6 %>
@@ -469,6 +504,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_14:
       subject: "配送手配"
+      fixed_version_id: 
       description: "配送手配"
       # start_date:
       due_date: <%= Date.today + 7 %>
@@ -479,6 +515,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_15:
       subject: "アンケート集計"
+      fixed_version_id: 
       description: "アンケート集計"
       # start_date:
       due_date: <%= Date.today + 15 %>
@@ -489,6 +526,7 @@ demo_data:
       tracker_name: "タスク"
     seminar_at_osaka_ticket_16:
       subject: "営業システムへ結果報告を登録"
+      fixed_version_id: 
       description: "営業システムへ結果報告を登録"
       # start_date:
       due_date: <%= Date.today + 25 %>
