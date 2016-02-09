@@ -308,6 +308,8 @@ demo_data:
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
+      attachment_file_name: "seminar_doc.pdf"
+      attachment_description: "セミナー配付資料"
     seminar_at_tokyo_ticket_17:
       subject: "セミナーアンケート作成"
       fixed_version_id: 

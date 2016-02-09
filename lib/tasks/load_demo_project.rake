@@ -115,6 +115,8 @@ namespace :redmine do
                 tracker_name = yaml_attributes.delete('tracker_name')
                 start_date = yaml_attributes.delete('start_date')
                 end_date = yaml_attributes.delete('end_date')
+                attachment_file_name = yaml_attributes.delete('attachment_file_name')
+                attachment_description = yaml_attributes.delete('attachment_description')
                 issue = create_demo_data(model_name, yaml_attributes, ['subject', 'fixed_version_id'], false) do |issue|
                   project = Project.find_by identifier: project_identifier
                   fixed_version = Version.find_by name: fixed_version_name
@@ -160,6 +162,20 @@ namespace :redmine do
                   issue.status = issue_status
                   # :issue.update_done_ratio_from_issue_status
                   issue.done_ratio = 100 # 進捗率 = 100%
+
+                  # 添付ファイルのダミーデータを設定
+                  if attachment_file_name
+                    attachment_file_path = Dir[File.join(Rails.root, 'plugins', 'redmine_demo_project', 'files', attachment_file_name)][0]
+                    attachment_file = File.new(attachment_file_path)
+                    attachment = Attachment.new(:file => attachment_file)
+                    attachment.author = assigned_user
+                    attachment.filename = attachment_file_name
+                    attachment.save!
+                    issue.save_attachments(Array.wrap({"filename" => attachment.filename,
+                                                       "description" => attachment_description,
+                                                       "token" => attachment.token}))
+                  end
+
                   begin
                     issue.save!(validate: false)
                     puts 'SUCCESS!'
