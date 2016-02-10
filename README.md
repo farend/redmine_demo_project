@@ -21,7 +21,7 @@
 
 ```
 > cd /var/lib/redmine/plugins
-> git clone https://account@commits.jp/farend/redmine/redmine_demo_project redmine_demo_project
+> sudo git clone https://account@commits.jp/farend/redmine/redmine_demo_project redmine_demo_project
 ```
 
 ## プラグインの実行方法（デモデータのロード方法）
