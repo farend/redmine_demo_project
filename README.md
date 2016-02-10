@@ -14,16 +14,26 @@
 
 これらのデータは、プラグイン内にある `db/demo_data.yml` に定義することができます。
 
-## プラグインの操作方法
+## プラグインの導入方法
 
-コンソールで以下のRakeタスクを実行します
+以下のコマンドを実行してRedmineのプラグインを配置します。
+(Redmineのインストール先が、 `/var/lib/redmine` の場合）
 
 ```
-cd REDMINE_ROOT
-bundle exec rake redmine:demo_project:load
+> cd /var/lib/redmine/plugins
+> git clone https://account@commits.jp/farend/redmine/redmine_demo_project redmine_demo_project
 ```
 
-## 登録済みのデモデータ
+## プラグインの実行方法（デモデータのロード方法）
+
+以下のとおりRakeタスクを実行します。
+
+```
+> cd /var/lib/redmine
+> sudo -s /usr/local/bin/bundle exec /usr/local/bin/rake redmine:demo_project:load RAILS_ENV=production
+```
+
+## 定義済みのデモデータ
 
 このプラグインには、初期状態で以下のデモデータが定義されています。
 
