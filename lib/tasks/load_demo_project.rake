@@ -159,7 +159,7 @@ namespace :redmine do
                 tracker_name = yaml_attributes.delete('tracker_name')
                 start_date = yaml_attributes.delete('start_date')
                 end_date = yaml_attributes.delete('end_date')
-                attachment_file_name = yaml_attributes.delete('attachment_file_name')
+                attachment_filename = yaml_attributes.delete('attachment_filename')
                 attachment_description = yaml_attributes.delete('attachment_description')
 
                 # チケットを新規作成する
@@ -212,8 +212,8 @@ namespace :redmine do
                   issue.done_ratio = 100 # 進捗率 = 100%
 
                   # 添付ファイルのダミーデータを設定
-                  if attachment_file_name
-                    attach_file!(issue, attachment_file_name, assigned_user, attachment_description)
+                  if attachment_filename.present?
+                    attach_file!(issue, attachment_filename, assigned_user, attachment_description)
                   end
 
                   begin

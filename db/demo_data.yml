@@ -119,8 +119,8 @@ demo_data:
     seminar_at_tokyo_file_1:
       version_name: '東京会場'
       project_identifier: 'product_intro_seminar'
-      attachment_filename: 'tokyo_seminar_flyer.pdf'
-      attachment_description: '東京会場のセミナーチラシ'
+      attachment_filename: 'tokyo_seminar_leaflet.pdf'
+      attachment_description: '東京会場のセミナーリーフレット'
       author_user_login: "testuser1"
 
   # チケット
@@ -317,7 +317,7 @@ demo_data:
       fixed_version_name: "東京会場"
       status_name: "終了"
       tracker_name: "タスク"
-      attachment_file_name: "seminar_doc.pdf"
+      attachment_filename: "seminar_doc.pdf"
       attachment_description: "セミナー配付資料"
     seminar_at_tokyo_ticket_17:
       subject: "セミナーアンケート作成"
