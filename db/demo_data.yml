@@ -114,6 +114,15 @@ demo_data:
       sharing: 'none'
       project_identifier: 'new_crm_dev'
 
+  # ファイル
+  files:
+    seminar_at_tokyo_file_1:
+      version_name: '東京会場'
+      project_identifier: 'product_intro_seminar'
+      attachment_filename: 'tokyo_seminar_flyer.pdf'
+      attachment_description: '東京会場のセミナーチラシ'
+      author_user_login: "testuser1"
+
   # チケット
   issues:
     seminar_at_tokyo_ticket_1:

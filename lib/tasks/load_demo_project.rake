@@ -25,6 +25,33 @@ def create_demo_data(model_name, yaml_attributes, find_keys, validate = true)
   end
 end
 
+def attach_file!(attached_obj, attachment_filename, author, attachment_description)
+  begin
+    print "(Saving Attachment #{attachment_filename}..."
+    attachment_file_path = File.join(Rails.root, 'plugins', 'redmine_demo_project', 'files', attachment_filename)
+    attachment_file = File.new(attachment_file_path)
+    attachment = Attachment.new(:file => attachment_file)
+    attachment.author = author
+    attachment.filename = attachment_filename
+    attachment.save!
+    # オブジェクトにファイルを添付する
+    case attached_obj.class.name
+    when "Issue"
+      attached_obj.save_attachments(Array.wrap({"filename" => attachment.filename,
+                                                "description" => attachment_description,
+                                                "token" => attachment.token}))
+    when "Version"
+      Attachment.attach_files(attached_obj, Array.wrap({"filename" => attachment.filename,
+                                                        "description" => attachment_description,
+                                                        "token" => attachment.token}))
+    end
+    print 'SUCCESS!)'
+  rescue => e
+    print "FAILD! : #{e.message})"
+    raise e
+  end
+end
+
 namespace :redmine do
   namespace :demo_project do
     desc 'Load Redmine Demo-data using yaml file'
@@ -101,11 +128,28 @@ namespace :redmine do
   
               when "Version"
                 project_identifier = yaml_attributes.delete('project_identifier')
-                create_demo_data(model_name, yaml_attributes, 'name') do |version|
+                project = Project.find_by identifier: project_identifier
+                yaml_attributes['project_id'] = project.id
+                create_demo_data(model_name, yaml_attributes, ['name', 'project_id']) do |version|
                   project = Project.find_by identifier: project_identifier
                   version.project = project
                 end
-  
+
+              when "File"
+                project_identifier = yaml_attributes.delete('project_identifier')
+                project = Project.find_by identifier: project_identifier
+                version_name = yaml_attributes.delete('version_name')
+                attachment_filename = yaml_attributes.delete('attachment_filename')
+                attachment_description = yaml_attributes.delete('attachment_description')
+                author_user_login = yaml_attributes.delete('author_user_login')
+                if version = Version.find_by(project_id: project.id, name: version_name)
+                  # 添付ファイルのダミーデータを設定
+                  if attachment_filename && author_user_login
+                    author = User.find_by login: author_user_login
+                    attach_file!(version, attachment_filename, author, attachment_description)
+                  end
+                end
+
               when "Issue"
                 project_identifier = yaml_attributes.delete('project_identifier')
                 assigned_user_login = yaml_attributes.delete('assigned_user_login')
@@ -117,6 +161,8 @@ namespace :redmine do
                 end_date = yaml_attributes.delete('end_date')
                 attachment_file_name = yaml_attributes.delete('attachment_file_name')
                 attachment_description = yaml_attributes.delete('attachment_description')
+
+                # チケットを新規作成する
                 issue = create_demo_data(model_name, yaml_attributes, ['subject', 'fixed_version_id'], false) do |issue|
                   project = Project.find_by identifier: project_identifier
                   fixed_version = Version.find_by name: fixed_version_name
@@ -131,6 +177,8 @@ namespace :redmine do
                   #issue.tracker ||= issue.project.trackers.first
                   issue.tracker = tracker
                 end
+
+                # ステータスに応じてチケットを編集-->更新する
                 issue_status = IssueStatus.find_by name: issue_status_name
                 
                 if issue_status_name == "進行中" || issue_status_name == "終了"
@@ -160,20 +208,12 @@ namespace :redmine do
                   journal.created_on = end_date if end_date.present?
                   issue_status = IssueStatus.find_by name: '終了'
                   issue.status = issue_status
-                  # :issue.update_done_ratio_from_issue_status
+                  # :issue.update_done_ratio_from_issue_status # MEMO: issue_statusにdone_ratioが設定されていないと有効にならない...
                   issue.done_ratio = 100 # 進捗率 = 100%
 
                   # 添付ファイルのダミーデータを設定
                   if attachment_file_name
-                    attachment_file_path = Dir[File.join(Rails.root, 'plugins', 'redmine_demo_project', 'files', attachment_file_name)][0]
-                    attachment_file = File.new(attachment_file_path)
-                    attachment = Attachment.new(:file => attachment_file)
-                    attachment.author = assigned_user
-                    attachment.filename = attachment_file_name
-                    attachment.save!
-                    issue.save_attachments(Array.wrap({"filename" => attachment.filename,
-                                                       "description" => attachment_description,
-                                                       "token" => attachment.token}))
+                    attach_file!(issue, attachment_file_name, assigned_user, attachment_description)
                   end
 
                   begin
