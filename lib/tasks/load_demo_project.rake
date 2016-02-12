@@ -59,9 +59,9 @@ def attach_file!(attached_obj, attachment_filename, author, attachment_descripti
 end
 
 namespace :redmine do
-  namespace :demo_project do
+  namespace :load_demo_project do
     desc 'Load Redmine Demo-data using yaml file'
-    task :load => :environment do |t|
+    task :all => :environment do |t|
       ActiveRecord::Base.transaction do
         demo_data_file_path = Dir[File.join(Rails.root, 'plugins', 'redmine_demo_project', 'db', 'demo_data.yml')][0]
         YAML::load(ERB.new(File.read(demo_data_file_path)).result).each do |yaml|
