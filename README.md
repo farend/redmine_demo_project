@@ -30,7 +30,7 @@
 
 ```
 > cd /var/lib/redmine
-> sudo -s /usr/local/bin/bundle exec /usr/local/bin/rake redmine:load_demo_project:all RAILS_ENV=production
+> sudo -s /usr/local/bin/bundle exec /usr/local/bin/rake redmine:load_demo_project RAILS_ENV=production
 ```
 
 ## 定義済みのデモデータ
