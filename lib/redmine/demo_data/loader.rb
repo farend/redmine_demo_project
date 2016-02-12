@@ -22,7 +22,7 @@ module Redmine
                   # (ex)
                   # table_name が `users` であれば、 `entry_user(yaml_attributes)` を呼び出し
                   table_names = %w(users trackers projects members versions files issues)
-                  self.send("entry_#{table_name.singularize}", yaml_attributes) if table_names.include(table_name)
+                  self.send("entry_#{table_name.singularize}", yaml_attributes) if table_names.include?(table_name)
                 end
               end
             end
@@ -152,50 +152,45 @@ module Redmine
           end
 
           # ステータスに応じてチケットを編集-->更新する
-          issue_status = IssueStatus.find_by name: issue_status_name
-          
+          # (1) 進行中または終了の場合は、ステータスを「進行中」にセットする
           if issue_status_name == "進行中" || issue_status_name == "終了"
-            print "Updating Issue #{issue.subject} status -> 進行中..."
-            issue.init_journal(assigned_user, '作業に着手しました。')
-            journal = issue.current_journal
-            journal.created_on = start_date
-            issue_status = IssueStatus.find_by name: '進行中'
-            issue.status = issue_status
-            issue.start_date = start_date
-            issue.done_ratio = rand(1..8) * 10 # 進捗率 = 10% 〜 80%
-            begin
-              issue.save!(validate: false)
-              puts 'SUCCESS!'
-            rescue => e
-              puts "FAILD! : #{e.message}"
-              raise e
-            end
+            done_ratio = rand(1..8) * 10
+            update_issue_status(issue, issue_status_name, done_ratio, '作業に着手しました', assigned_user, start_date)
           end
 
+          # (2)終了の場合は、ステータスを「終了」にセットする
           if issue_status_name == "終了"
-            print "Updating Issue #{issue.subject} status -> 終了..."
-            # issue.reload  # MEMO: issue.reloadだと進行中で設定したjournalが上書きされるので、もう一度findする
-            issue = Issue.find(issue.id)
-            issue.init_journal(assigned_user, '作業が完了しました。')
-            journal = issue.current_journal
-            journal.created_on = end_date if end_date.present?
-            issue_status = IssueStatus.find_by name: '終了'
-            issue.status = issue_status
-            # :issue.update_done_ratio_from_issue_status # MEMO: issue_statusにdone_ratioが設定されていないと有効にならない...
-            issue.done_ratio = 100 # 進捗率 = 100%
-
-            # 添付ファイルのダミーデータを設定
-            if attachment_filename.present?
-              attach_file!(issue, attachment_filename, assigned_user, attachment_description)
+            update_issue_status(issue, '終了', 100, '作業が完了しました。', assigned_user, end_date) do |updated_issue|
+              # 添付ファイルのダミーデータを設定
+              if attachment_filename.present?
+                attach_file!(updated_issue, attachment_filename, assigned_user, attachment_description)
+              end
             end
+          end
+        end
 
-            begin
-              issue.save!(validate: false)
-              puts 'SUCCESS!'
-            rescue => e
-              puts "FAILD! : #{e.message}"
-              raise e
-            end
+        # チケットのステータスを更新する
+        def update_issue_status(issue, status_name, done_ratio, journal_note, update_user, updated_at)
+          print "Updating Issue #{issue.subject} status -> 終了..."
+          # issue.reload  # MEMO: issue.reloadだと進行中で設定したjournalが上書きされるので、もう一度findする
+          issue = Issue.find(issue.id)
+          issue.init_journal(update_user, journal_note)
+          journal = issue.current_journal
+          journal.created_on = updated_at if updated_at.present?
+          issue_status = IssueStatus.find_by name: status_name
+          issue.status = issue_status
+          # :issue.update_done_ratio_from_issue_status # MEMO: issue_statusにdone_ratioが設定されていないと有効にならない...
+          issue.done_ratio =  done_ratio.to_i # 進捗率
+
+          # ファイルの添付など付随する処理
+          yield(issue) if block_given?
+
+          begin
+            issue.save!(validate: false)
+            puts 'SUCCESS!'
+          rescue => e
+            puts "FAILD! : #{e.message}"
+            raise e
           end
         end
 
