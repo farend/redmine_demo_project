@@ -155,12 +155,12 @@ module Redmine
           # (1) 進行中または終了の場合は、ステータスを「進行中」にセットする
           if issue_status_name == "進行中" || issue_status_name == "終了"
             done_ratio = rand(1..8) * 10
-            update_issue_status(issue, issue_status_name, done_ratio, '作業に着手しました', assigned_user, start_date)
+            update_issue_status(issue, '進行中', done_ratio, '作業に着手しました', assigned_user, start_date, start_date)
           end
 
           # (2)終了の場合は、ステータスを「終了」にセットする
           if issue_status_name == "終了"
-            update_issue_status(issue, '終了', 100, '作業が完了しました。', assigned_user, end_date) do |updated_issue|
+            update_issue_status(issue, '終了', 100, '作業が完了しました。', assigned_user, nil, end_date) do |updated_issue|
               # 添付ファイルのダミーデータを設定
               if attachment_filename.present?
                 attach_file!(updated_issue, attachment_filename, assigned_user, attachment_description)
@@ -170,7 +170,7 @@ module Redmine
         end
 
         # チケットのステータスを更新する
-        def update_issue_status(issue, status_name, done_ratio, journal_note, update_user, updated_at)
+        def update_issue_status(issue, status_name, done_ratio, journal_note, update_user, started_at, updated_at)
           print "Updating Issue #{issue.subject} status -> 終了..."
           # issue.reload  # MEMO: issue.reloadだと進行中で設定したjournalが上書きされるので、もう一度findする
           issue = Issue.find(issue.id)
@@ -179,6 +179,7 @@ module Redmine
           journal.created_on = updated_at if updated_at.present?
           issue_status = IssueStatus.find_by name: status_name
           issue.status = issue_status
+          issue.start_date = updated_at if started_at.present?
           # :issue.update_done_ratio_from_issue_status # MEMO: issue_statusにdone_ratioが設定されていないと有効にならない...
           issue.done_ratio =  done_ratio.to_i # 進捗率
 
