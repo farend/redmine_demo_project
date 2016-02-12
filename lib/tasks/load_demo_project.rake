@@ -1,4 +1,7 @@
-def create_demo_data(model_name, yaml_attributes, find_keys, validate = true)
+#
+# デモデータを登録するメソッド
+#
+def entry_demo_data(model_name, yaml_attributes, find_keys, validate = true)
   model_klass = model_name.constantize
   find_keys = Array.wrap(find_keys)
   if find_keys.any?
@@ -25,6 +28,9 @@ def create_demo_data(model_name, yaml_attributes, find_keys, validate = true)
   end
 end
 
+#
+# Attachementクラスを使ってファイルを添付するメソッド
+#
 def attach_file!(attached_obj, attachment_filename, author, attachment_description)
   begin
     print "(Saving Attachment #{attachment_filename}..."
@@ -70,7 +76,7 @@ namespace :redmine do
               case model_name
   
               when "User"
-                create_demo_data(model_name, yaml_attributes, 'login') do |user|
+                entry_demo_data(model_name, yaml_attributes, 'login') do |user|
                   user.login = yaml_attributes['login']
                   user.password = yaml_attributes['password']
                   user.password_confirmation = yaml_attributes['password_confirmation']
@@ -83,7 +89,7 @@ namespace :redmine do
   
               when "Tracker"
                 Tracker.skip_callback(:destroy, :before, :check_integrity)
-                tracker = create_demo_data(model_name, yaml_attributes, 'name') do |tracker|
+                tracker = entry_demo_data(model_name, yaml_attributes, 'name') do |tracker|
                   tracker.default_status_id = IssueStatus.first.id
                 end
                 # トラッカーにワークフローを設定する
@@ -103,7 +109,7 @@ namespace :redmine do
   
               when "Project"
                 tracker_names = yaml_attributes.delete('tracker_names')
-                create_demo_data(model_name, yaml_attributes, 'identifier') do |project|
+                entry_demo_data(model_name, yaml_attributes, 'identifier') do |project|
                   trackers = Tracker.where('name IN (?)', tracker_names)
                   project.trackers = trackers
                 end
@@ -130,7 +136,7 @@ namespace :redmine do
                 project_identifier = yaml_attributes.delete('project_identifier')
                 project = Project.find_by identifier: project_identifier
                 yaml_attributes['project_id'] = project.id
-                create_demo_data(model_name, yaml_attributes, ['name', 'project_id']) do |version|
+                entry_demo_data(model_name, yaml_attributes, ['name', 'project_id']) do |version|
                   project = Project.find_by identifier: project_identifier
                   version.project = project
                 end
@@ -163,7 +169,7 @@ namespace :redmine do
                 attachment_description = yaml_attributes.delete('attachment_description')
 
                 # チケットを新規作成する
-                issue = create_demo_data(model_name, yaml_attributes, ['subject', 'fixed_version_id'], false) do |issue|
+                issue = entry_demo_data(model_name, yaml_attributes, ['subject', 'fixed_version_id'], false) do |issue|
                   project = Project.find_by identifier: project_identifier
                   fixed_version = Version.find_by name: fixed_version_name
                   # issue_status = IssueStatus.find_by name: issue_status_name
