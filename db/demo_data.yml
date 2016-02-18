@@ -598,13 +598,21 @@ demo_data:
       project_identifier: "product_intro_seminar"
       title: 'Wiki'
       content:
-        text: "Wiki\r\n\r\nh2. [[東京セミナーのブース設営について]]\r\n\r\nh2. [[大阪セミナーのブース設営について]]"
+        text: "Wiki\r\n\r\nh2. [[セミナーの会場設営について]]\r\n\r\nh2. [[セミナー当日までの協議メモ]]"
         author_login: "testuser1"
-    product_intro_seminar_ato_tokyo_wiki:
+    product_intro_seminar_wiki_site_management:
       project_identifier: "product_intro_seminar"
-      title: '東京セミナーのブース設営について'
+      parent_title: "Wiki"
+      title: 'セミナーの会場設営について'
+      content:
+        text: "h1. セミナーの会場設営について\r\n\r\nh2. \r\n* [[東京会場]]\r\n* [[大阪会場]]"
+        author_login: "testuser1"
+    product_intro_seminar_wiki_tokyo:
+      project_identifier: "product_intro_seminar"
+      parent_title: 'セミナーの会場設営について'
+      title: '東京会場'
       attachment_filename: 'tokyo_seminar_floormap.jpg'
       attachment_description: '東京会場のフロアマップ'
       content:
-        text: "h1. 東京セミナーのブース設営について\r\n\r\nh2. 会場\r\n\r\n東京ビッグサイト（東京国際展示場）\r\n\r\n〒１３５－００６３\r\n東京都江東区有明三丁目１１番１号\r\n\r\nwww.bigsight.jp/\r\n\r\nh2. 展示場（ホール）\r\n\r\n今回利用するのは、 *東展示棟 第一ホール*\r\n\r\n!tokyo_seminar_floormap.jpg!\r\n\r\nh2. ブース\r\n\r\nエリア：「 *５−D* 」にブースを設営します。\r\n\r\nh2. 展示準備について"
+        text: "h1. 東京会場\r\n\r\nh2. 会場\r\n\r\n東京ビッグサイト（東京国際展示場）\r\n\r\n〒１３５－００６３\r\n東京都江東区有明三丁目１１番１号\r\n\r\nwww.bigsight.jp/\r\n\r\nh2. 展示場（ホール）\r\n\r\n今回利用するのは、 *東展示棟 第一ホール*\r\n\r\n!tokyo_seminar_floormap.jpg!\r\n\r\nh2. ブース\r\n\r\nエリア：「 *５−D* 」にブースを設営します。\r\n\r\nh2. 展示準備について"
         author_login: "testuser1"

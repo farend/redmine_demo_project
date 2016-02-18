@@ -217,7 +217,12 @@ module Redmine
           return unless wiki.present?
           # WikiPageを登録するためのyaml_attributes['wiki_id']に、wikiのidをセットする
           yaml_attributes['wiki_id'] = wiki.id
-          
+
+          # 親ページのtitleを取り出してWikiPageを登録するためのyaml_attributes['parent_id']にセットする
+          parent_title = yaml_attributes.delete('parent_title')
+          parent_id = wiki.pages.find_by(title: parent_title).try(:id)
+          yaml_attributes['parent_id'] = parent_id
+
           # WikiPageの添付ファイル情報を取り出す
           attachment_filename = yaml_attributes.delete('attachment_filename')
           attachment_description = yaml_attributes.delete('attachment_description')
