@@ -21,7 +21,7 @@ module Redmine
                   # テーブル名に応じて、`entry_テーブル名の単数形` メソッドを呼び出してデータを登録する
                   # (ex)
                   # table_name が `users` であれば、 `entry_user(yaml_attributes)` を呼び出し
-                  table_names = %w(users trackers projects members versions files issues)
+                  table_names = %w(users trackers projects members versions files issues wikis wiki_pages)
                   self.send("entry_#{table_name.singularize}", yaml_attributes) if table_names.include?(table_name)
                 end
               end
@@ -196,6 +196,49 @@ module Redmine
         end
 
         #
+        # Wikiを登録する
+        #
+        def entry_wiki(yaml_attributes)
+          project_identifier = yaml_attributes.delete('project_identifier')
+          project = Project.find_by identifier: project_identifier
+          yaml_attributes['project_id'] = project.id
+          wiki = entry_demo_data('Wiki', yaml_attributes, ['project_id'], false)
+        end
+
+        #
+        # WikiPage、WikiContentを登録する
+        #
+        def entry_wiki_page(yaml_attributes)
+          # WikiPageのプロジェクト情報を取り出し＆プロジェクトをDBからロードする
+          project_identifier = yaml_attributes.delete('project_identifier')
+          project = Project.find_by identifier: project_identifier
+          # プロジェクトのWikiデータをDBからロードする
+          wiki = Wiki.find_by project_id: project.id
+          return unless wiki.present?
+          # WikiPageを登録するためのyaml_attributes['wiki_id']に、wikiのidをセットする
+          yaml_attributes['wiki_id'] = wiki.id
+          
+          # WikiPageの添付ファイル情報を取り出す
+          attachment_filename = yaml_attributes.delete('attachment_filename')
+          attachment_description = yaml_attributes.delete('attachment_description')
+
+          # WikiContentのattributesを取り出す
+          content_attributes = yaml_attributes.delete('content')
+          # WikiContentの作成者のでーたを取り出す 
+          author_login = content_attributes.delete('author_login')
+          author = User.find_by login: author_login
+          # WikiPageをまず作成する
+          wiki_page = entry_demo_data('WikiPage', yaml_attributes, ['wiki_id', 'title'], false) do |page|
+            content_attributes['author_id'] = author.id
+            wiki_content = page.build_content(content_attributes)
+          end
+          # 添付ファイルのダミーデータを設定
+          if attachment_filename.present?
+            attach_file!(wiki_page, attachment_filename, author, attachment_description)
+          end
+        end
+
+        #
         # デモデータを登録する
         #
         def entry_demo_data(model_name, yaml_attributes, find_keys, validate = true)
@@ -220,6 +263,7 @@ module Redmine
             puts 'SUCCESS!'
             return model_obj
           rescue => e
+            binding.pry
             puts "FAILD! : #{e.message}"
             raise e
           end
@@ -243,7 +287,7 @@ module Redmine
               attached_obj.save_attachments(Array.wrap({"filename" => attachment.filename,
                                                         "description" => attachment_description,
                                                         "token" => attachment.token}))
-            when "Version"
+            when "Version", "WikiPage"
               Attachment.attach_files(attached_obj, Array.wrap({"filename" => attachment.filename,
                                                                 "description" => attachment_description,
                                                                 "token" => attachment.token}))

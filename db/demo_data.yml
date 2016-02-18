@@ -584,3 +584,27 @@ demo_data:
       fixed_version_name: "大阪会場"
       status_name: "新規"
       tracker_name: "タスク"
+
+  # Wiki
+  wikis:
+    product_intro_seminar_wiki:
+      project_identifier: "product_intro_seminar"
+      start_page: 'Wiki'
+      status: 1
+
+  # Wikiページ
+  wiki_pages:
+    product_intro_seminar_wiki_start:
+      project_identifier: "product_intro_seminar"
+      title: 'Wiki'
+      content:
+        text: "Wiki\r\n\r\nh2. [[東京セミナーのブース設営について]]\r\n\r\nh2. [[大阪セミナーのブース設営について]]"
+        author_login: "testuser1"
+    product_intro_seminar_ato_tokyo_wiki:
+      project_identifier: "product_intro_seminar"
+      title: '東京セミナーのブース設営について'
+      attachment_filename: 'tokyo_seminar_floormap.jpg'
+      attachment_description: '東京会場のフロアマップ'
+      content:
+        text: "h1. 東京セミナーのブース設営について\r\n\r\nh2. 会場\r\n\r\n東京ビッグサイト（東京国際展示場）\r\n\r\n〒１３５－００６３\r\n東京都江東区有明三丁目１１番１号\r\n\r\nwww.bigsight.jp/\r\n\r\nh2. 展示場（ホール）\r\n\r\n今回利用するのは、 *東展示棟 第一ホール*\r\n\r\n!tokyo_seminar_floormap.jpg!\r\n\r\nh2. ブース\r\n\r\nエリア：「 *５−D* 」にブースを設営します。\r\n\r\nh2. 展示準備について"
+        author_login: "testuser1"
