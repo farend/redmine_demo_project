@@ -616,3 +616,14 @@ demo_data:
       content:
         text: "h1. 東京会場\r\n\r\nh2. 会場\r\n\r\n東京ビッグサイト（東京国際展示場）\r\n\r\n〒１３５－００６３\r\n東京都江東区有明三丁目１１番１号\r\n\r\nwww.bigsight.jp/\r\n\r\nh2. 展示場（ホール）\r\n\r\n今回利用するのは、 *東展示棟 第一ホール*\r\n\r\n!tokyo_seminar_floormap.jpg!\r\n\r\nh2. ブース\r\n\r\nエリア：「 *５−D* 」にブースを設営します。\r\n\r\nh2. 展示準備について"
         author_login: "testuser1"
+  # News
+  news:
+    product_intro_seminar_news:
+      project_identifier: "product_intro_seminar"
+      author_login: "testuser1"
+      title: "東京でのセミナーは大盛況でした！"
+      summary: "東京ビッグサイトにて新製品紹介セミナーを無事開催しました。\r\n当日の来場者数は5,000人、開場時間の9:50より１時間前からビッグサイト内には入場を待つ来場者が長蛇の列を..."
+      description: "東京ビッグサイトにて新製品紹介セミナーを無事開催しました。\r\n当日の来場者数は5,000人、開場時間の9:50より１時間前からビッグサイト内には入場を待つ来場者が長蛇の列を...\r\n\r\n!tokyo_seminar_appearance.jpg!"
+      created_on: <%= Date.today - 9 %>
+      attachment_filename: 'tokyo_seminar_appearance.jpg'
+      attachment_description: '東京会場の様子'

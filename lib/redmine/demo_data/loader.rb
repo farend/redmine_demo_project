@@ -21,7 +21,7 @@ module Redmine
                   # テーブル名に応じて、`entry_テーブル名の単数形` メソッドを呼び出してデータを登録する
                   # (ex)
                   # table_name が `users` であれば、 `entry_user(yaml_attributes)` を呼び出し
-                  table_names = %w(users trackers projects members versions files issues wikis wiki_pages)
+                  table_names = %w(users trackers projects members versions files issues wikis wiki_pages news)
                   self.send("entry_#{table_name.singularize}", yaml_attributes) if table_names.include?(table_name)
                 end
               end
@@ -243,6 +243,28 @@ module Redmine
           end
         end
 
+        # Newsを登録する
+        def entry_news(yaml_attributes)
+          # プロジェクト、投稿者の情報を取り出す
+          project_identifier = yaml_attributes.delete('project_identifier')
+          project = Project.find_by(identifier: project_identifier)
+          author_login = yaml_attributes.delete('author_login')
+          author = User.find_by(login: author_login)
+          # WikiPageの添付ファイル情報を取り出す
+          attachment_filename = yaml_attributes.delete('attachment_filename')
+          attachment_description = yaml_attributes.delete('attachment_description')
+          
+          if project.present? && author.present?
+            yaml_attributes['project_id'] = project.id
+            yaml_attributes['author_id'] = author.id
+            news = entry_demo_data('News', yaml_attributes, [])
+            # 添付ファイルのダミーデータを設定
+            if attachment_filename.present?
+              attach_file!(news, attachment_filename, author, attachment_description)
+            end
+          end
+        end
+
         #
         # デモデータを登録する
         #
@@ -292,7 +314,7 @@ module Redmine
               attached_obj.save_attachments(Array.wrap({"filename" => attachment.filename,
                                                         "description" => attachment_description,
                                                         "token" => attachment.token}))
-            when "Version", "WikiPage"
+            when "Version", "WikiPage", "News"
               Attachment.attach_files(attached_obj, Array.wrap({"filename" => attachment.filename,
                                                                 "description" => attachment_description,
                                                                 "token" => attachment.token}))
