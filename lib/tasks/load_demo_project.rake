@@ -4,6 +4,7 @@ namespace :redmine do
     begin
       demo_data_yaml_path = Dir[File.join(Rails.root, 'plugins', 'redmine_demo_project', 'db', 'demo_data.yml')][0]
       Redmine::DemoData::Loader.load(demo_data_yaml_path)
+      puts ""
       puts "Demo data loaded."
     rescue Redmine::DemoData::InvalidDemoData => error
       puts error.message
