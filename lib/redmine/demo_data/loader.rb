@@ -45,7 +45,7 @@ module Redmine
 
         # トラッカーを登録する
         def entry_tracker(yaml_attributes)
-          Tracker.skip_callback(:destroy, :before, :check_integrity)
+          # Tracker.skip_callback(:destroy, :before, :check_integrity)
           tracker = entry_demo_data('Tracker', yaml_attributes, 'name') do |tracker|
             tracker.default_status_id = IssueStatus.first.id
           end
