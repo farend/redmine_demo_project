@@ -19,18 +19,20 @@
 以下のコマンドを実行してRedmineのプラグインを配置します。
 (Redmineのインストール先が、 `/var/lib/redmine` の場合）
 
-```
-> cd /var/lib/redmine/plugins
-> sudo git clone https://account@commits.jp/farend/redmine/redmine_demo_project redmine_demo_project
+```console
+$ cd /var/lib/redmine/plugins
+$ git clone https://github.com/farend/redmine_demo_project.git
 ```
 
 ## プラグインの実行方法（デモデータのロード方法）
 
 以下のとおりRakeタスクを実行します。
 
-```
-> cd /var/lib/redmine
-> sudo -s /usr/local/bin/bundle exec /usr/local/bin/rake redmine:load_demo_project RAILS_ENV=production
+```console
+$ cd /var/lib/redmine
+$ bundle exec rake redmine:load_default_data
+Select language: ja
+$ bundle exec rake redmine:load_demo_project
 ```
 
 ## 定義済みのデモデータ
