@@ -6,7 +6,7 @@ module Redmine
       class << self
         def load(demo_data_yaml_path)
           ActiveRecord::Base.transaction do
-            YAML::load(ERB.new(File.read(demo_data_yaml_path)).result).each do |yaml|
+            Psych.safe_load(ERB.new(File.read(demo_data_yaml_path)).result, permitted_classes: [Date]).each do |yaml|
               yaml.last.each do |table_name, records|
                 records.each do |record|
                   # recordは配列となっており、record[0]=yamlデータ上の識別子、record[1]=yaml化されたattributesで構成されている
